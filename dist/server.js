@@ -14,6 +14,9 @@ class ServerBootstrap {
         this.app.use(express_1.default.urlencoded({ extended: true }));
         this.app.use((0, morgan_1.default)('dev'));
         this.app.use((0, cors_1.default)());
+        this.app.get('/api', (req, res) => {
+            res.status(200).json({ message: "Hola mundo" });
+        });
         this.listen();
     }
     listen() {
