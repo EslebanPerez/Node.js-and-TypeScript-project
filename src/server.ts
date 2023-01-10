@@ -13,7 +13,7 @@ class ServerBootstrap{
     this.app.use(cors())
 
     this.app.get('/api', (req, res) => {
-      res.status(200).json({ message: "Hola mundo!" })
+      res.status(200).json({ message: "Hola mundo!!!" })
     })
 
     this.listen();
@@ -21,7 +21,7 @@ class ServerBootstrap{
   
   public listen(){
     this.app.listen(this.port, () => {
-      console.log("Server listen on port "+ this.port);
+      console.log("Server listen on port "+ this.port + " 🚀");
     })
   }
 }
