@@ -5,7 +5,8 @@
   "main": "commitlint.config.js",
   "scripts": {
     "type": "echo \"Error: no test specified\" && exit 1",
-    "start": "tsc && node dist/server.js"
+    "start": "tsc && node dist/server.js",
+    "start:dev": "tsc && concurrently \"tsc --watch\" \"nodemon dist/server.js\""
   },
   "keywords": [],
   "author": "",
