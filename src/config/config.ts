@@ -1,4 +1,6 @@
 import * as dotenv from 'dotenv'
+import { SnakeNamingStrategy } from 'typeorm-naming-strategies'
+import { DataSourceOptions } from 'typeorm'
 
 export abstract class configServer {
   constructor(){
@@ -28,5 +30,22 @@ export abstract class configServer {
     }
     //console.log(arrEnv); <- ['production', 'env']
     return '.'+arrEnv.join('.') // .production.env - take the name of the file 
+  }
+
+  public get typeORMConfig(): DataSourceOptions{
+    return {
+      type:"mysql",
+      host: this.getEnvironment("DB_HOST"),
+      port: this.getNumberEnv("DB_PORT"),
+      username: this.getEnvironment("DB_USER"),
+      password: this.getEnvironment("DB_PASSWORD"),
+      database: this.getEnvironment("DB_DATABASE"),
+      entities: [__dirname + "/../**/*.entity{.ts,.js}"], // * Search in any folder and any file with finish entity ts or js
+      migrations:[__dirname + "/../../migrations/*{.ts,.js}"],
+      synchronize: true,
+      logging: false,
+      namingStrategy: new SnakeNamingStrategy()
+      
+    }
   }
 }
